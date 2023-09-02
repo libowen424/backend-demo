@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@Data
+@Data // 提供类的get、set、equals、hashCode、canEqual、toString方法
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor // 提供类的无参构造
+@AllArgsConstructor // 提供类的全参构造
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;
