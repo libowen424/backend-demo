@@ -1,7 +1,8 @@
 package com.sky.enumeration;
 
 /**
- * 数据库操作类型
+ * 需要统一填充功能字段的数据库操作类型
+ *  只有更新 插入需要填充
  */
 public enum OperationType {
 

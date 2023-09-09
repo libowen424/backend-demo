@@ -47,16 +47,19 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
 
         //2、校验令牌
         try {
-            log.info("jwt校验:{}", token);
+            log.info("jwt校验 token:{}", token);
             Claims claims = JwtUtil.parseJWT(jwtProperties.getAdminSecretKey(), token);
+            log.info("jwt校验 claims:{}", claims);
+            log.info("jwt校验 当前员工id: {}", claims.get(JwtClaimsConstant.EMP_ID).toString());
             Long empId = Long.valueOf(claims.get(JwtClaimsConstant.EMP_ID).toString());
-            log.info("当前员工id：", empId);
+
             //用ThreadLocal存储状态信息（每次请求都是一个新的线程）
             BaseContext.setCurrentId(empId);
             //3、通过，放行
             return true;
         } catch (Exception ex) {
             //4、不通过，响应401状态码
+            log.error(ex.toString());
             response.setStatus(401);
             return false;
         }

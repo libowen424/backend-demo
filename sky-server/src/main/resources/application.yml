@@ -1,5 +1,5 @@
 server:
-  port: 8085
+  port: 8084
 
 spring:
   profiles:
@@ -22,6 +22,8 @@ mybatis:
     map-underscore-to-camel-case: true
 
 mybatis-plus:
+  # 似乎引入mybatis-plus后，别名配置需要在mybatis-plus配，仅在mybatis中配置无法生效
+  type-aliases-package: com.sky.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
@@ -42,3 +44,10 @@ sky:
     admin-ttl: 7200000
     # 设置前端传递过来的令牌参数名称
     admin-token-name: token
+
+  alioss:
+    endpoint: ${sky.alioss.endpoint}
+    access-key-id: ${sky.alioss.access-key-id}
+    access-key-secret: ${sky.alioss.access-key-secret}
+    bucket-name: ${sky.alioss.bucket-name}
+    dir-path: ${sky.alioss.dir-path}

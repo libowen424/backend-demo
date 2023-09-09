@@ -18,6 +18,7 @@ public class AliOssUtil {
     private String accessKeyId;
     private String accessKeySecret;
     private String bucketName;
+    private String dirPath;
 
     /**
      * 文件上传
@@ -32,8 +33,8 @@ public class AliOssUtil {
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
 
         try {
-            // 创建PutObject请求。
-            ossClient.putObject(bucketName, objectName, new ByteArrayInputStream(bytes));
+            // 创建PutObject请求。 文件保存在dirPath路径下
+            ossClient.putObject(bucketName, dirPath + objectName, new ByteArrayInputStream(bytes));
         } catch (OSSException oe) {
             System.out.println("Caught an OSSException, which means your request made it to OSS, "
                     + "but was rejected with an error response for some reason.");
@@ -52,13 +53,14 @@ public class AliOssUtil {
             }
         }
 
-        //文件访问路径规则 https://BucketName.Endpoint/ObjectName
+        //文件访问路径规则 https://BucketName.Endpoint/dirPath/ObjectName
         StringBuilder stringBuilder = new StringBuilder("https://");
         stringBuilder
                 .append(bucketName)
                 .append(".")
                 .append(endpoint)
                 .append("/")
+                .append(dirPath)
                 .append(objectName);
 
         log.info("文件上传到:{}", stringBuilder.toString());

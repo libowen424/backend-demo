@@ -4,6 +4,7 @@ import com.sky.entity.DishFlavor;
 import lombok.Data;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,4 +27,15 @@ public class DishDTO implements Serializable {
     //口味
     private List<DishFlavor> flavors = new ArrayList<>();
 
+    //创建时间
+    private LocalDateTime createTime;
+
+    //更新时间
+    private LocalDateTime updateTime;
+
+    //创建人
+    private Long createUser;
+
+    //修改人
+    private Long updateUser;
 }
